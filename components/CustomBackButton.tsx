@@ -24,7 +24,7 @@ const CustomBackButton = ({ forcedDestination = null, className = "" }) => {
   return (
     <TouchableOpacity
       onPress={handleBackPress}
-      className={`mt-6 ml-6 w-6 h-6 rounded-md border-[#EFEFEF33] bg-[#121212] border p-5 items-center justify-center ${className}`}
+      className={`ml-6 w-6 h-6 rounded-md border-[#EFEFEF33] bg-[#121212] border p-5 items-center justify-center ${className}`}
     >
       <ArrowLeft size="14px" stroke="white" />
     </TouchableOpacity>

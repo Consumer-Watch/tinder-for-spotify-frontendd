@@ -122,6 +122,7 @@ export default function Layout() {
                 borderRadius: 10,
                 padding: 5,
                 flex: 1,
+                marginBottom: 12
               },
               drawerActiveTintColor: "#121212",
             }}
