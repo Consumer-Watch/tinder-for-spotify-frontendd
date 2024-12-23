@@ -6,25 +6,16 @@ import { StatusBar } from "expo-status-bar";
 import * as Sentry from "@sentry/react-native";
 import Constants from "expo-constants";
 import { useEffect, useRef, useState } from "react";
-import ErrorPage from "../components/error";
+import ErrorPage from "~/components/error";
 import { Toasts } from "@backpackapp-io/react-native-toast";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PortalHost } from '@rn-primitives/portal';
 import { Theme, ThemeProvider } from '@react-navigation/native';
 import { NAV_THEME } from "~/lib/constants";
 
-const routingInstrumentation = new Sentry.ReactNavigationInstrumentation({
-  enableTimeToInitialDisplay: Constants.appOwnership !== "expo", // Only in native builds, not in Expo Go.
-});
 
 Sentry.init({
   dsn: "https://2fb0ea7fc6844754866e14b106f95d61@o4507575650418688.ingest.us.sentry.io/4507577953812480",
-  integrations: [
-    new Sentry.ReactNativeTracing({
-      routingInstrumentation,
-      enableNativeFramesTracking: Constants.appOwnership !== "expo", // Only in native builds, not in Expo Go.
-    }),
-  ],
   tracesSampleRate: 1.0,
   _experiments: {
     // profilesSampleRate is relative to tracesSampleRate.
@@ -36,24 +27,42 @@ Sentry.init({
 const DARK_THEME: Theme = {
   dark: true,
   colors: NAV_THEME.dark,
+  fonts: {
+    regular: {
+      fontWeight: "400",
+      fontFamily: ""
+    },
+    bold: {
+      fontWeight: "800",
+      fontFamily: ""
+    },
+    medium: {
+      fontWeight: "500",
+      fontFamily: ""
+    },
+    heavy: {
+      fontWeight: "900",
+      fontFamily: ""
+    }
+  }
 };
 
-const LIGHT_THEME: Theme = {
+const LIGHT_THEME = {
   dark: false,
   colors: NAV_THEME.light,
 };
 
+const queryClient = new QueryClient();
 
 function RootLayout() {
-  const queryClient = new QueryClient();
 
   const ref = useNavigationContainerRef();
 
-  useEffect(() => {
-    if (ref) {
-      routingInstrumentation.registerNavigationContainer(ref);
-    }
-  }, [ref]);
+  // useEffect(() => {
+  //   if (ref) {
+  //     routingInstrumentation.registerNavigationContainer(ref);
+  //   }
+  // }, [ref]);
   
   return (
     <ThemeProvider value={DARK_THEME}>

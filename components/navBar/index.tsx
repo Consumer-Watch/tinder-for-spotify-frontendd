@@ -9,7 +9,7 @@ import { Skeleton } from '../skeleton';
 
 
 export function getHomeNavbarOptions() {
-  const navigation = useNavigation('/(screens)');
+  const navigation = useNavigation();
   const router = useRouter()
 
   const { userProfile, isLoading } = useCurrentUser();

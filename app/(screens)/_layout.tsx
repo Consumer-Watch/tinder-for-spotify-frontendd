@@ -80,9 +80,6 @@ export default function Layout() {
           drawerContentStyle: {
             backgroundColor: "#121212",
           },
-          sceneContainerStyle: {
-            backgroundColor: "#121212",
-          },
           headerStyle: {
             backgroundColor: "#121212",
           },
